@@ -83,13 +83,13 @@ class GCompare extends _DiffEngine{
             $pos = $total - $i - 1;
             if($pos == ($total -1)){
                 $compareData = $this->compareDetail($strList[$pos], $strList[$pos-1]);
-                similar_text($strList[$pos], $strList[$pos],&$rate);
+                similar_text($strList[$pos], $strList[$pos],$rate);
                 $rate = ceil($rate);
                 $data[$pos]['compare']=$compareData[0];
             }else{
                 $compareData = $this->compareDetail($strList[$pos+1], $strList[$pos]);
                 
-                similar_text($strList[$pos+1], $strList[$pos],&$rate);
+                similar_text($strList[$pos+1], $strList[$pos],$rate);
                 $rate = ceil($rate);
                 $data[$pos]['compare']=$compareData[1];
             }
@@ -172,7 +172,7 @@ class UPLimitCompare extends GCompare{
         for ($i = 0; $i < $total; $i++) {
             $pos = $total - $i - 1;
             $data[$pos]['origin'] = $strList[$pos];
-            similar_text($strList[$pos], $lastLine,&$rate);
+            similar_text($strList[$pos], $lastLine,$rate);
             $rate = ceil($rate);
             $data[$pos]['rate'] = $rate;
             if(($upLimit == -1 ) && ($rate != 100)){
@@ -195,7 +195,7 @@ class UPLimitCompare extends GCompare{
         $lastLine = $strList[$total-1];
         for ($i = 0; $i < $total; $i++) {
             $pos = $total - $i - 1;
-            similar_text($strList[$pos], $lastLine,&$rate);
+            similar_text($strList[$pos], $lastLine,$rate);
             $rate = ceil($rate);
             if($rate < 100){
                 return false;
@@ -216,7 +216,7 @@ class UPLimitCompare extends GCompare{
         for ($i = 0; $i < $total; $i++) {
             $pos = $total - $i - 1;
             $data[$pos]['origin'] = $strList[$pos];
-            similar_text($strList[$pos], $lastLine,&$rate);
+            similar_text($strList[$pos], $lastLine,$rate);
             $rate = ceil($rate);
             $data[$pos]['rate'] = $rate;
             if(($upLimit == -1 ) && ($rate != 100)){
